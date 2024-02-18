@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ticketing</title>
+
+    <style>        
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+       
+        .font-inter{
+    font-family: "Inter", sans-serif;
+    }
+        .font-raleway{
+    font-family: "Raleway", sans-serif;
+    }
+    </style>
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <header>
+
+        <!-- Navbar -->
+        <div class="container mx-auto lg:px-24 px-2">
+            <div class="navbar bg-base-100 sm:flex sm:justify-between">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        </div>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li class="text-lg font-raleway font-medium bg-none hover:text-[#1DD100]"><a href="">Home</a></li>
+                            <li class="text-lg font-raleway font-medium bg-none hover:text-[#1DD100]"><a href="">About</a></li>
+                            <li class="text-lg font-raleway font-medium bg-none hover:text-[#1DD100]"><a href="">Destination</a></li>
+                            <li class="text-lg font-raleway font-medium bg-none hover:text-[#1DD100]"><a href="">Search</a></li>
+                        </ul>
+                    </div>
+                    <a class="font-raleway text-4xl font-extrabold">P-Ticket</a>
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1">
+                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Home</a></li>
+                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">About</a></li>
+                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Destination</a></li>
+                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Search</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end">
+                <a class="btn font-raleway font-bold text-xl text-[#1DD100] bg-green-50 border-1 border-[#1DD100]">Bus <img src="/images/bus-icon.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- hero section -->
+        <div class="container mx-auto lg:px-24 px-2">
+            <div class="hero min-h-screen rounded-3xl relative lg:w-full" style="background-image: url(./images/banner.png);">
+                <div class="hero-content text-center">
+                  <div class="lg:max-w-full ">
+                    <h1 class="mb-5 text-6xl text-white font-raleway font-extrabold">End-to-End Travel with <br><span class="text-[#1DD100]">P Paribahan</span></h1>
+                    <p class="mb-5 flex flex-wrap px-64 text-lg text-white font-normal">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
+                    <button class="btn bg-[#1DD100] text-#030712 font-raleway text-xl font-bold px-6 py-2 border-none" id="">Buy Tickets</button>
+                  </div>
+                </div>
+            </div>
+            <div class="flex absolute bottom-[-120px] right-56 items-center lg:flex-row flex-col-1 justify-center gap-6">
+                <div class="flex gap-4 border-b-4 border-[#1DD100] bg-white rounded-3xl px-8 py-4">
+                    <img src="./images/people.png" alt="">
+                    <div>
+                        <h2 class="text-4xl text-#030712 font-inter font-bold">500K+</h2>
+                        <p class="text-lg text-gray-500 font-inter">Registered Users</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 border-b-4 border-[#1DD100] bg-white rounded-3xl px-8 py-4">
+                    <img src="./images/ticket-cupon.png" alt="">
+                    <div>
+                        <h2 class="text-4xl text-#030712 font-inter font-bold">1.7 lacks</h2>
+                        <p class="text-lg text-gray-500 font-inter">Tickets Sold</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 border-b-4 border-[#1DD100] bg-white rounded-3xl px-8 py-4">
+                    <img src="./images/stoppage.png" alt="">
+                    <div>
+                        <h2 class="text-4xl text-#030712 font-inter font-bold">80K+</h2>
+                        <p class="text-lg text-gray-500 font-inter">Rental partners</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Best offers -->
+        <section class="my-32 text-center  mx-auto lg:px-20 px-2"">
+            <h3 class="text-bold text-#030712 font-raleway text-4xl">Best offers for you</h3>
+            <div class="flex lg:flex-row flex-col gap-8 mt-10 mb-10 justify-center">
+                <div class="flex lg:flex-row flex-col-1 bg-[#FFBF0F] rounded-3xl">
+                    <div class="px-14 py-12 mx-auto text-left ">
+                        <h1 class="text-4xl font-inter font-bold   text-[#030712CC]">15% OFF</h1>
+                        <p class="text-xl font-inter font-semibold text-[#030712CC]" >on your next purchase</p>
+                        <p class="text-lg font-inter font-normal   text-gray-500">use by January 2024</p>
+                    </div>
+                    <img src="./images/cupon-devider.png" alt="">
+                    <div class="px-8 mx-auto  flex flex-col justify-center items-center">
+                        <h1 class="text-4xl font-raleway font-bold text-[#030712CC]">NEW15</h1>
+                        <p class="text-xl font-raleway font-normal   text-gray-500">Coupon Code</p>
+                    </div>
+                </div>
+                <div class="flex lg:flex-row flex-col-1 bg-[#F78C9C] rounded-3xl">
+                    <div class="px-14 py-12 mx-auto text-left">
+                        <h1 class="text-4xl font-inter font-bold   text-[#030712CC] ">20% OFF</h1>
+                        <p class="text-xl font-inter font-semibold text-[#030712CC]" >on your next purchase</p>
+                        <p class="text-lg font-inter font-normal   text-gray-600">use by January 2024</p>
+                    </div>
+                    <img src="./images/cupon-devider.png" alt="">
+                    <div class="px-8 mx-auto  flex flex-col justify-center items-center">
+                        <h1 class="text-3xl font-raleway font-bold text-[#030712CC]">COUPLE 20</h1>
+                        <p class="text-xl font-raleway font-normal   text-gray-600">Coupon Code</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn text-xl font-bold font-raleway text-[#1DD100] border-1 border-[#1DD100] bg-white ">See All Offers</button>
+        </section>
+
+        <!-- P.H Paribahan -->
+
+        <section class="bg-[#F7F8F8] border-t-2 border-[#1DD100] rounded-t-3xl">
+            <div class="text-center pt-24 space-y-3">
+                <h3 class="font-raleway font-bold text-4xl text-[#030712]">P.H. Paribahan</h3>
+                <p class="font-raleway text-lg text-[#030712CC]">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
+            </div>
+
+            <!-- Greenline Paribahan Starts -->
+
+            <div class="bg-white">
+                <div>
+                    <div class="flex justify-between">
+                        <!-- Bus Info -->
+                        <div class="flex gap-4">
+                            <img src="./images/bus-logo.png" alt="">
+                            <div>
+                                <h3 class="text-3xl font-raleway tex-[#030712] font-bold">Greenline Paribahan</h3>
+                                <p class="text-lg font-inter tex-[#030712CC] font-normal">Coach-009-WEB ! AC_Business</p>
+                            </div>
+                        </div>
+
+                        <!-- Available Seats  -->
+                        <button class="btn bg-green-50 border-1 border-[#1DD100] text-[#1DD100] font-bold text-lg">
+                            <img src="./images/seat-green.png" alt="">
+                            40 Seats Left 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-[#F7F8F8] rounded-3xl">
+                    <div>
+                        <div class="flex">
+                            <p>Route</p>
+                            <p>Dhaka-Sylhet</p>
+                        </div>
+
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <img src="./images/info-devider.png" alt="">
+                <div></div>
+            </div>
+
+            <!-- Greenline Paribahan Ends -->
+
+        </section>
+    </main>
+    
+</body>
+</html>
