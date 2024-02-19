@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Bus Seat Booking</title>
+</head>
+<body class="bg-gray-200 p-8">
+
+    <div class="max-w-lg mx-auto bg-white p-8 rounded shadow">
+        <h2 class="text-2xl font-bold mb-4">Bus Seat Booking</h2>
+    
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <h3 class="text-lg font-semibold mb-2">Seats</h3>
+                <div id="seatMap" class="grid grid-cols-5 gap-2">
+                    <!-- Seats will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-2">Selected Seats</h3>
+                <ul id="selectedSeats" class="list-none mb-4">
+                    <!-- Selected seats will be dynamically added here -->
+                </ul>
+                <p class="text-gray-500">Available Seats: <span id="availableSeats">20</span></p>
+                <button id="resetSelection" class="bg-red-500 text-white px-4 py-2 rounded">Reset Selection</button>
+            </div>
+        </div>
+    
+        <div class="mb-4">
+            <label for="couponCode" class="block text-sm font-semibold mb-1">Coupon Code:</label>
+            <input type="text" id="couponCode" class="w-full p-2 border rounded">
+            <button id="applyCoupon" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Apply Coupon</button>
+        </div>
+    
+        <div>
+            <p class="text-lg font-semibold mb-2">Grand Total: $<span id="grandTotal">0</span></p>
+            <button id="checkout" class="bg-green-500 text-white px-4 py-2 rounded">Checkout</button>
+        </div>
+    
+        <!-- Cart Section -->
+        <div class="mt-8">
+            <h3 class="text-lg font-semibold mb-2">Cart</h3>
+            <ul id="cart" class="list-none">
+                <!-- Cart items will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Tailwind CSS Modal -->
+    <div id="purchaseModal" class="fixed inset-0 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded shadow-lg">
+            <p class="text-lg font-semibold mb-4">Purchasing Completed</p>
+            <button id="okayButton" class="bg-green-500 text-white px-4 py-2 rounded">Okay</button>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Define your seat data
+    const seatData = [
+        { id: 'A', label: 'A' },
+        { id: 'B', label: 'B' },
+        { id: 'C', label: 'C' },
+    ];
+
+    const seatMapContainer = $('#seatMap');
+    const selectedSeatsList = $('#selectedSeats');
+    const availableSeatsCount = $('#availableSeats');
+    const grandTotal = $('#grandTotal');
+
+    // Initialize seat map
+    seatData.forEach(row => {
+        for (let i = 1; i <= 4; i++) {
+            const seatId = row.id + i;
+            seatMapContainer.append(`<button id="${seatId}" class="w-10 h-10 border rounded ${
+                i === 4 ? 'col-span-2' : ''
+            }">${seatId}</button>`);
+        }
+    });
+
+    // Initialize state
+    let selectedSeats = [];
+    let totalSeats = 20;
+
+    // Update available seats count
+    function updateAvailableSeats() {
+        availableSeatsCount.text(totalSeats - selectedSeats.length);
+    }
+
+    // Update selected seats list
+    function updateSelectedSeats() {
+        selectedSeatsList.empty();
+        selectedSeats.forEach(seat => {
+            selectedSeatsList.append(`<li class="text-green-500">${seat}</li>`);
+        });
+    }
+
+    // Update grand total
+    function updateGrandTotal() {
+        const basePrice = 60; // Change this to your seat price
+        const discount = $('#couponCode').val() === 'NEW15' ? 0.15 : ($('#couponCode').val() === 'COUPLE20' ? 0.20 : 0);
+        const totalPrice = selectedSeats.length * basePrice * (1 - discount);
+        grandTotal.text(totalPrice.toFixed(2));
+    }
+
+    // Handle seat selection
+    seatMapContainer.on('click', 'button', function () {
+        const seatId = $(this).attr('id');
+
+        if (selectedSeats.length < 4 && !selectedSeats.includes(seatId)) {
+            selectedSeats.push(seatId);
+            $(this).addClass('bg-green-500 text-white');
+
+            // Add seat info to cart
+            const seatInfo = getSeatInfo(seatId);
+            addToCart(seatInfo);
+        } else if (selectedSeats.includes(seatId)) {
+            selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+            $(this).removeClass('bg-green-500 text-white');
+
+            // Remove seat info from cart
+            removeFromCart(seatId);
+        }
+
+        updateSelectedSeats();
+        updateAvailableSeats();
+        updateGrandTotal();
+    });
+
+    // Function to get seat information
+    function getSeatInfo(seatId) {
+        const rowId = seatId.charAt(0);
+        const classType = (parseInt(seatId.substring(1)) > 2) ? 'Business Class' : 'Economy Class';
+        const ticketPrice = (classType === 'Business Class') ? 60 : 50; // Adjust prices as needed
+
+        return {
+            seatNumber: seatId,
+            classType,
+            ticketPrice,
+        };
+    }
+
+    // Function to add seat info to cart
+    function addToCart(seatInfo) {
+        const cartItem = `<li>${seatInfo.seatNumber} ${seatInfo.classType} $${seatInfo.ticketPrice}</li>`;
+        $('#cart').append(cartItem);
+    }
+
+    // Function to remove seat info from cart
+    function removeFromCart(seatId) {
+        $(`#cart li:contains(${seatId})`).remove();
+    }
+
+    // Handle coupon application
+    $('#applyCoupon').on('click', function () {
+        const couponCode = $('#couponCode').val();
+        if (couponCode === 'NEW15' || couponCode === 'COUPLE20') {
+            $(this).prop('disabled', true);
+            $('#couponCode').hide();
+            updateGrandTotal();
+        } else {
+            alert('Invalid coupon code');
+        }
+    });
+
+    // Handle checkout
+    $('#checkout').on('click', function () {
+        // Add your checkout logic here
+        alert('Checkout logic goes here!');
+    });
+
+    // Handle reset selection button
+    $('#resetSelection').on('click', function () {
+        // Clear selected seats and update UI
+        selectedSeats = [];
+        updateSelectedSeats();
+        updateAvailableSeats();
+        updateGrandTotal();
+        
+        // Remove selected styling from seats
+        seatMapContainer.find('button').removeClass('bg-green-500 text-white');
+    });
+</script>
+</body>
+</html>
