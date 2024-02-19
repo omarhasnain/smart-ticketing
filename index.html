@@ -6,13 +6,16 @@
     <title>Smart Ticketing</title>
 
     <style>        
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:wght@300;400;500;700&display=swap');
        
         .font-inter{
     font-family: "Inter", sans-serif;
     }
         .font-raleway{
     font-family: "Raleway", sans-serif;
+    }
+        .font-roboto{
+    font-family: "Roboto", sans-serif;
     }
     </style>
     
@@ -47,7 +50,7 @@
                 </div>
                 <div class="navbar-center hidden lg:flex">
                     <ul class="menu menu-horizontal px-1">
-                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Home</a></li>
+                        <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="" id="#homePage">Home</a></li>
                         <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">About</a></li>
                         <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Destination</a></li>
                         <li class="text-lg font-raleway font-medium  hover:text-[#1DD100]"><a href="">Search</a></li>
@@ -437,7 +440,7 @@
                               </div>
                             </div>
                             <div class="mt-4 flex justify-center">
-                                <button class="text-lg lg:text-base border-none btn text-white bg-[#1DD100] font-bold w-full">Next</button>
+                                <button onclick= "my_modal_5.showModal()" class="text-lg lg:text-base border-none btn text-white bg-[#1DD100] font-bold w-full">Next</button>
                             </div>
                             <div class="flex justify-center gap-6">
                                 <p class="text-base font-normal text-gray-500 underline">Terms and Conditions</p>
@@ -476,7 +479,30 @@
                 <p><a href="" class="font-medium font-inter text-base text-white">Privacy policy</a></p>
             </div>
         </div>
-      </footer>
+    </footer>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box flex flex-col justify-center items-center space-y-3">
+        <img class="w-20 h-20" src="./images/success.png" alt="">
+        <h3 class="font-bold text-center text-lg text-[#27AE60] font-roboto uppercase">Success</h3>
+        <p class="py-4 font-roboto text-[#4A4A4A] text-xl font-medium text-center">Thank you for Booking Our Bus Seats. <br>
+             We are working hard to find the best service and deals for you.</p>
+        <p class="font-roboto text-[#4A4A4A] text-xl font-light text-center">Shortly you will find a confirmation in your email.</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button onclick= "" class="text-lg flex justify-center items-center font-roboto font-semibold px-24 rounded-3xl lg:text-xl border-none btn text-white bg-[#27AE60] w-full">Next</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+    
+        
+    </script>
     
 </body>
+
 </html>
